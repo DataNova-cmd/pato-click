@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pato Clicker - Juego Global</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header con contador global y monedas -->
+        <header class="header">
+            <div class="stats">
+                <div class="global-counter">
+                    <h2>Clicks Globales: <span id="globalClicks">0</span></h2>
+                </div>
+                <div class="coins">
+                    <h3>💰 Monedas: <span id="userCoins">0</span></h3>
+                </div>
+            </div>
+        </header>
+
+        <!-- Metas globales -->
+        <section class="global-goals">
+            <h3>🎯 Metas Globales</h3>
+            <div class="goals-grid">
+                <div class="goal" data-target="1000000">
+                    <span class="goal-text">1 Millón</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-1m"></div>
+                    </div>
+                </div>
+                <div class="goal" data-target="10000000">
+                    <span class="goal-text">10 Millones</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-10m"></div>
+                    </div>
+                </div>
+                <div class="goal" data-target="100000000">
+                    <span class="goal-text">100 Millones</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-100m"></div>
+                    </div>
+                </div>
+                <div class="goal" data-target="1000000000">
+                    <span class="goal-text">1000 Millones</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-1000m"></div>
+                    </div>
+                </div>
+                <div class="goal" data-target="10000000000">
+                    <span class="goal-text">10000 Millones</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-10000m"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pato principal -->
+        <main class="game-area">
+            <div class="duck-container">
+                <div id="duck" class="duck">
+                    <div class="duck-body">
+                        <div class="duck-head">
+                            <div class="duck-beak" id="duckBeak"></div>
+                            <div class="duck-eye left"></div>
+                            <div class="duck-eye right"></div>
+                        </div>
+                        <div class="duck-wing"></div>
+                    </div>
+                    <!-- Elementos de vestimenta -->
+                    <div id="duckHat" class="duck-hat hidden"></div>
+                    <div id="duckShirt" class="duck-shirt hidden"></div>
+                </div>
+                <div class="click-effect" id="clickEffect"></div>
+            </div>
+        </main>
+
+        <!-- Botones principales -->
+        <section class="main-buttons">
+            <button id="achievementsBtn" class="main-btn">🏆 Logros Personales</button>
+            <button id="shopBtn" class="main-btn">🛍️ Tienda</button>
+        </section>
+    </div>
+
+    <!-- Modal de Logros -->
+    <div id="achievementsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" id="closeAchievements">&times;</span>
+            <h2>🏆 Logros Personales</h2>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Los logros se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Tienda -->
+    <div id="shopModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" id="closeShop">&times;</span>
+            <h2>🛍️ Tienda del Pato</h2>
+            <div class="shop-tabs">
+                <button class="tab-btn active" data-tab="hats">🎩 Sombreros</button>
+                <button class="tab-btn" data-tab="shirts">👕 Camisetas</button>
+                <button class="tab-btn" data-tab="multipliers">💰 Multiplicadores</button>
+            </div>
+            
+            <div class="shop-content">
+                <!-- Sombreros -->
+                <div id="hats" class="shop-tab active">
+                    <div class="shop-grid">
+                        <div class="shop-item" data-item="hat1" data-price="100">
+                            <div class="item-preview">🎩</div>
+                            <h4>Sombrero Elegante</h4>
+                            <p>💰 100 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="hat2" data-price="500">
+                            <div class="item-preview">👑</div>
+                            <h4>Corona Real</h4>
+                            <p>💰 500 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="hat3" data-price="1000">
+                            <div class="item-preview">🎓</div>
+                            <h4>Gorro Graduado</h4>
+                            <p>💰 1,000 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Camisetas -->
+                <div id="shirts" class="shop-tab">
+                    <div class="shop-grid">
+                        <div class="shop-item" data-item="shirt1" data-price="200">
+                            <div class="item-preview">👕</div>
+                            <h4>Camiseta Básica</h4>
+                            <p>💰 200 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="shirt2" data-price="750">
+                            <div class="item-preview">👔</div>
+                            <h4>Camisa Formal</h4>
+                            <p>💰 750 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="shirt3" data-price="1500">
+                            <div class="item-preview">🦺</div>
+                            <h4>Chaleco Especial</h4>
+                            <p>💰 1,500 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Multiplicadores -->
+                <div id="multipliers" class="shop-tab">
+                    <div class="shop-grid">
+                        <div class="shop-item" data-item="mult2x" data-price="5000">
+                            <div class="item-preview">2️⃣</div>
+                            <h4>Multiplicador x2</h4>
+                            <p>💰 5,000 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="mult5x" data-price="25000">
+                            <div class="item-preview">5️⃣</div>
+                            <h4>Multiplicador x5</h4>
+                            <p>💰 25,000 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                        <div class="shop-item" data-item="mult10x" data-price="100000">
+                            <div class="item-preview">🔟</div>
+                            <h4>Multiplicador x10</h4>
+                            <p>💰 100,000 monedas</p>
+                            <button class="buy-btn">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
